@@ -23,13 +23,14 @@
 
 global
 function math(context) {
-    return context.scopes.some(s => s.startsWith("support.class.math.block.environment"))
-	&& context.scopes.some(s => s.startsWith("meta.math.block.latex"))
-	// comment out below if you would like a more loose math context
-	&& ! context.scopes.some(s => s.startsWith("punctuation.definition.string.begin.latex"))
-	// uncomment below for a more strict math context
-	//&& ! context.scopes.some(s => s.startsWith("punctuation.definition.string.end.latex"))
-	&& ! context.scopes.some(s => s.startsWith("comment"));
+    const result = 
+		(context.scopes.some(s => s.startsWith("support.class.math.block.environment"))
+		|| context.scopes.some(s => s.startsWith("support.class.math.block.tex")))
+        && (context.scopes.some(s => s.startsWith("meta.math.block.latex"))
+		|| context.scopes.some(s => s.startsWith("meta.math.block.tex")))
+        && !context.scopes.some(s => s.startsWith("punctuation.definition.string.begin.latex"))
+        && !context.scopes.some(s => s.startsWith("comment"));
+    return result;
 }
 endglobal
 
@@ -46,14 +47,6 @@ function text(context) {
     return !context.scopes.some(s => s.startsWith("meta.math") || s.startsWith("meta.embedded") || s.startsWith("source"));
 }
 endglobal
-
-snippet // "Fraction simple" A
-\frac{$1}{$2}$0
-endsnippet
-
-snippet `((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/` "Fraction no ()" A
-\frac{``rv = m[1]``}{$1}$0
-endsnippet
 
 snippet `vec([1-9])` "column vector" A
 ``rv = '\\begin{pmatrix}'``
@@ -89,14 +82,14 @@ snippet `([A-Z])#` "bb" A
 endsnippet
 
 snippet mk "inline math" A
-\$$1\$``if (t[1] && ",-.?: )]".indexOf(t[1][0]) >= 0) 
+\$ $0 \$``if (t[1] && ",-.?: )]".indexOf(t[1][0]) >= 0) 
 	{
 		rv = '' 
 	} 
 	else 
 	{ 
 		rv = ' ' 
-	}``$2
+	}``
 endsnippet
 
 snippet `(?<![\\a-zA-Z{}])([a-zA-Z])\1{1}(?![a-zA-Z])` "greek letters" A
@@ -421,24 +414,24 @@ endsnippet
 
 # xsq -> x^2
 context math(context)
-snippet `\s*?sq` " [HS] Square" iA
+snippet `\s*?sq` " [HS] Square" A
 ^2
 endsnippet
 
 context math(context)
-snippet `\s*?cb` " [HS] Cube" iA
+snippet `\s*?cb` " [HS] Cube" A
 ^3
 endsnippet
 
 # x inv -> x^{-1}
 context math(context)
-snippet `\s*?\\in\s?v` " [HS] Inverse" iA
+snippet `\s*?\\in\s?v` " [HS] Inverse" A
 ^{-1}
 endsnippet
 
 # x^^ -> x^{}
 context math(context)
-snippet `\^\^` " [HS] Superscript" iA
+snippet `\^\^` " [HS] Superscript" A
 ^{$1} $0
 endsnippet
 
@@ -454,14 +447,14 @@ snippet `(\B\\[A-Za-z]+|\b\d*[A-Za-z])_(\d\d)` " [HS] Auto subscript 2" A
 `` rv = `${m[1]}_{${m[2]}}` ``
 endsnippet
 
-# xNN -> x_n
+# xnn -> x_n
 context math(context)
 snippet `(\B\\[A-Za-z]+|\b\d*[A-Za-z])([a-z])\2` " [HS] a_k" A
 `` rv = `${m[1]}_${m[2].toLowerCase()}` ``
 endsnippet
 
-# xIImk -> x_{i-k}
-# xIIpk -> x_{i+k}
+# xiimk -> x_{i-k}
+# xiipk -> x_{i+k}
 context math(context)
 priority 2
 snippet `(\B\\[A-Za-z]+|\b\d*[A-Za-z])_([0-9a-zA-Z\_\{\}\-\+\*])(m|p)([0-9a-z])` " [HS] _{k-d}" A

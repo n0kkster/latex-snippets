@@ -1,0 +1,430 @@
+{
+	"Align*": {
+		"prefix": "al",
+		"body": [
+			"\\begin{align*}",
+			"\t$0",
+			"\\end{align*}"
+		]
+	},
+	"bold": {
+		"prefix": "bold",
+		"body": [
+			"\\textbf{${1:${TM_SELECTED_TEXT}}} $0"
+		]
+	},
+	"italic": {
+		"prefix": "italic",
+		"body": [
+			"\\textit{${1:${TM_SELECTED_TEXT}}} $0"
+		]
+	},
+	"underbrace": {
+		"prefix": "underbrace",
+		"body": [
+			"\\underbrace{${1:${TM_SELECTED_TEXT}}}_{$2} $0"
+		]
+	},
+	"overbrace": {
+		"prefix": "overbrace",
+		"body": [
+			"\\overbrace{${1:${TM_SELECTED_TEXT}}}_{$2} $0"
+		]
+	},
+	"underset": {
+		"prefix": "underset",
+		"body": [
+			"\\underset{$1}{${2:${TM_SELECTED_TEXT}}} $0"
+		]
+	},
+	"overset": {
+		"prefix": "overset",
+		"body": [
+			"\\overset{$1}{${2:${TM_SELECTED_TEXT}}} $0"
+		]
+	},
+	"Environment": {
+		"prefix": "beg",
+		"body": [
+			"\\begin{${1:name}}",
+			"\t$0",
+			"\\end{${1:name}}"
+		]
+	},
+	"Text": {
+		"prefix": "txt",
+		"body": [
+			"\\text{$0}"
+		]
+	},
+	"Table": {
+		"prefix": "tab",
+		"body": [
+			"\\begin{table}[H]",
+			"\t\\centering",
+			"\t\\begin{tabular}{${1:ccc}}",
+			"\t\t\\toprule",
+			"\t\ta & b & c \\\\\\ \\midrule",
+			"\t\t1 & 2 & 3 \\\\\\",
+			"\t\t\\bottomrule",
+			"\t\\end{tabular}",
+			"\t\\caption{${2:caption}\\label{tab:${3:sample}}}",
+			"\\end{table}",
+			"$0"
+		]
+	},
+	"pmatrix": {
+		"prefix": "pm",
+		"body": [
+			"\\begin{pmatrix}",
+			"$1",
+			"\\end{pmatrix}",
+			"$0"
+		]
+	},
+	"Integral": {
+		"prefix": "int",
+		"body": [
+			"\\int_{${1:0}}^{${2:\\infty}} $0"
+		]
+	},
+	"Sum Full": {
+		"prefix": "sumi",
+		"body": [
+			"\\sum_{${1:i}=${2:0}}^{${3:\\infty}} $0"
+		]
+	},
+	"undersetinline": {
+		"prefix": "_",
+		"body": [
+			"_{$1}$0"
+		]
+	},
+	"parenthesis1": {
+		"prefix": "(",
+		"body": [
+			"\\left($1\\right"
+		]
+	},
+	"parenthesis2": {
+		"prefix": "[",
+		"body": [
+			"\\left[$1\\right"
+		]
+	},
+	"parenthesis3": {
+		"prefix": "{",
+		"body": [
+			"\\left{$1\\right"
+		]
+	},
+	"average": {
+		"prefix": "avg",
+		"body": [
+			"\\langle $1 \\rangle$0"
+		]
+	},
+	"Sum": {
+		"prefix": "sum",
+		"body": [
+			"\\sum_{${1:i=0}}^{${2:\\infty}} $0"
+		]
+	},
+	"hbar": {
+		"prefix": "hb",
+		"body": [
+			"\\hbar"
+		]
+	},
+	"section": {
+		"prefix": "sec",
+		"body": [
+			"\\section{$1}",
+			"$0"
+		]
+	},
+	"subsection": {
+		"prefix": "ssec",
+		"body": [
+			"\\subsection{$1}",
+			"$0"
+		]
+	},
+	"operatorname": {
+		"prefix": "op",
+		"body": [
+			"\\operatorname{$1} $0"
+		]
+	},
+	"mathrm": {
+		"prefix": "rm",
+		"body": [
+			"\\mathrm{$1} $0"
+		]
+	},
+
+	"begin/end equation": {
+		"prefix": [
+			"eq"
+		],
+		"body": [
+			"\\begin{equation}",
+			"$1",
+			"\\end{equation}",
+			"$0"
+		]
+	},
+	"begin/end void equation": {
+		"prefix": [
+			"eqv"
+		],
+		"body": [
+			"\\begin{equation*}",
+			"$1",
+			"\\end{equation*}",
+			"$0"
+		]
+	},
+	"begin/end aligned": {
+		"prefix": [
+			"ali"
+		],
+		"body": [
+			"\\begin{aligned}",
+			"$0",
+			"\\end{aligned}"
+		]
+	},
+	"begin/end gather": {
+		"prefix": [
+			"gat"
+		],
+		"body": [
+			"\\begin{gather}",
+			"$0",
+			"\\end{gather}"
+		]
+	},
+	"begin/end gather*": {
+		"prefix": [
+			"gatv"
+		],
+		"body": [
+			"\\begin{gather*}",
+			"$0",
+			"\\end{gather*}"
+		]
+	},
+	"begin/end cases": {
+		"prefix": [
+			"cas"
+		],
+		"body": [
+			"\\begin{cases}",
+			"$0",
+			"\\end{cases}"
+		]
+	},
+	"begin/end cases*": {
+		"prefix": [
+			"casv"
+		],
+		"body": [
+			"\\begin{cases*}",
+			"$0",
+			"\\end{cases*}"
+		]
+	},
+	"begin/end enumerate": {
+		"prefix": [
+			"enu",
+			"enm"
+		],
+		"body": [
+			"\\begin{enumerate}",
+			"\t\\item $0",
+			"\\end{enumerate}"
+		]
+	},
+	"begin/end enumerate*": {
+		"prefix": [
+			"enuv",
+			"enmv"
+		],
+		"body": [
+			"\\begin{enumerate*}",
+			"\t\\item $0",
+			"\\end{enumerate*}"
+		]
+	},
+	"begin/end itemize": {
+		"prefix": [
+			"itm"
+		],
+		"body": [
+			"\\begin{itemize}",
+			"\t\\item $0",
+			"\\end{itemize}"
+		]
+	},
+	"begin/end theorem": {
+		"prefix": [
+			"thm"
+		],
+		"body": [
+			"\\begin{thm}",
+			"$0",
+			"\\end{thm}"
+		]
+	},
+	"begin/end theorem* ": {
+		"prefix": [
+			"thmv"
+		],
+		"body": [
+			"\\begin{thm*}",
+			"$0",
+			"\\end{thm*}"
+		]
+	},
+	"begin/end corollary": {
+		"prefix": [
+			"cor"
+		],
+		"body": [
+			"\\begin{cor}",
+			"$0",
+			"\\end{cor}"
+		]
+	},
+	"begin/end corollary* ": {
+		"prefix": [
+			"corv"
+		],
+		"body": [
+			"\\begin{cor*}",
+			"$0",
+			"\\end{cor*}"
+		]
+	},
+	"begin/end example": {
+		"prefix": [
+			"ex"
+		],
+		"body": [
+			"\\begin{ex}",
+			"$0",
+			"\\fin\\end{ex}"
+		]
+	},
+	"begin/end example* ": {
+		"prefix": [
+			"exv"
+		],
+		"body": [
+			"\\begin{ex*}",
+			"$0",
+			"\\fin\\end{ex*}"
+		]
+	},
+	"begin/end exercise": {
+		"prefix": [
+			"exe"
+		],
+		"body": [
+			"\\begin{exe}",
+			"$0",
+			"\\end{exe}"
+		]
+	},
+	"begin/end remark": {
+		"prefix": [
+			"rem"
+		],
+		"body": [
+			"\\begin{rem}",
+			"$0",
+			"\\fin\\end{rem}"
+		]
+	},
+	"begin/end remark* ": {
+		"prefix": [
+			"remv"
+		],
+		"body": [
+			"\\begin{rem*}",
+			"$0",
+			"\\fin\\end{rem*}"
+		]
+	},
+	"begin/end definition": {
+		"prefix": [
+			"dfn"
+		],
+		"body": [
+			"\\begin{dfn}",
+			"$0",
+			"\\end{dfn}"
+		]
+	},
+	"begin/end definition*": {
+		"prefix": [
+			"dfnv"
+		],
+		"body": [
+			"\\begin{dfn*}",
+			"$0",
+			"\\end{dfn*}"
+		]
+	},
+	"begin/end proposition": {
+		"prefix": [
+			"prp"
+		],
+		"body": [
+			"\\begin{prp}",
+			"$0",
+			"\\end{prp}"
+		]
+	},
+	"begin/end proposition*": {
+		"prefix": [
+			"prpv"
+		],
+		"body": [
+			"\\begin{prp*}",
+			"$0",
+			"\\end{prp*}"
+		]
+	},
+	"begin/end lemma": {
+		"prefix": [
+			"lem"
+		],
+		"body": [
+			"\\begin{lem}",
+			"$0",
+			"\\end{lem}"
+		]
+	},
+	"begin/end lem*": {
+		"prefix": [
+			"lemv"
+		],
+		"body": [
+			"\\begin{lem*}",
+			"$0",
+			"\\end{lem*}"
+		]
+	},
+	"begin/end prf": {
+		"prefix": [
+			"prf"
+		],
+		"body": [
+			"\\begin{prf}",
+			"$0",
+			"\\end{prf}"
+		]
+	}
+}

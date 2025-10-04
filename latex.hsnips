@@ -48,6 +48,7 @@ function text(context) {
 }
 endglobal
 
+context math(context)
 snippet `vec([1-9])` "column vector" A
 ``rv = '\\begin{pmatrix}'``
 ``count=2;
@@ -61,22 +62,27 @@ rv = msg;
 \\end{pmatrix}
 endsnippet
 
+context math(context)
 snippet `(\\?\w+)(,\.|\.,)` "vector" A
 ``rv = '\\vec{' + m[1] + '}'``
 endsnippet
 
+context math(context)
 snippet `\b([a-zA-Z])bar\b` "bar" A
 ``rv = '\\bar{' + m[1] + '}'``
 endsnippet
 
+context math(context)
 snippet `\b([a-zA-Z])-hat\b` "hat" A
 ``rv = '\\hat{' + m[1] + '}'``
 endsnippet
 
+context math(context)
 snippet `\b([a-zA-Z])cal\b` "cal" A
 ``rv = '\\mathcal{' + m[1] + '}'``
 endsnippet
 
+context math(context)
 snippet `([A-Z])#` "bb" A
 ``rv = '\\mathbb{' + m[1] + '}'``
 endsnippet
@@ -92,27 +98,33 @@ snippet mk "inline math" A
 	}``
 endsnippet
 
+context math(context)
 snippet `(?<![\\a-zA-Z{}])([a-zA-Z])\1{1}(?![a-zA-Z])` "greek letters" A
 ``transliteration = {"a": "\\alpha", "b": "\\beta", "g": "\\gamma", "G": "\\Gamma", "d": "\\delta", "D": "\\Delta", "e": "\\epsilon", "E": "\\varepsilon", "z": "\\zeta", "h": "\\eta", "t": "\\theta", "T": "\\Theta", "k": "\\kappa", "i": "\\iota", "l": "\\lambda", "L": "\\Lambda", "m": "\\mu", "n": "\\nu", "x": "\\xi", "X": "\\Xi", "p": "\\pi", "P": "\\Pi", "r": "\\rho", "s": "\\sigma", "S": "\\Sigma", "o": "\\omega", "O": "\\Omega", "c": "\\chi", "f": "\\phi", "F": "\\Phi", "y": "\\upsilon", "Y": "\\Upsilon", "v": "\\psi", "V": "\\Psi", "u": "\\tau" };
 rv = (transliteration[m[1]] || (m[1] + m[1]))``
 endsnippet
 
+context math(context)
 snippet -> "to" A
 ``rv = '\\to'``
 endsnippet
 
+context math(context)
 snippet !> "mapsto" A
 ``rv = '\\mapsto'``
 endsnippet
 
+context math(context)
 snippet @@ "infinity" A
 ``rv = '\\infty'``
 endsnippet
 
+context math(context)
 snippet `([a-zA-Z0-9])td` "exponentiation" A
 ``rv = m[1] + '^{$1}'``
 endsnippet
 
+context math(context)
 snippet `\b(d|D)(\\?\w+)[dD](\w{1}|\\\w+) ` "derivatives" A
 ``
 if (m[1] == 'd') 
@@ -122,10 +134,12 @@ else
 ``
 endsnippet
 
+context math(context)
 snippet `=>` "implies" A
 `` rv = '\\Rightarrow' ``
 endsnippet
 
+context math(context)
 snippet `=<` "implied by" A
 ``rv = '\\Leftarrow'``
 endsnippet
@@ -142,14 +156,12 @@ snippet `>=` "geq" A
 ``rv = '\\geq'``
 endsnippet
 
-snippet xnn "x_n"
-``rv = 'x_n' ``
-endsnippet
-
+context math(context)
 snippet `([\\?a-zA-Z]+)->([\\?a-zA-Z]+) ` A
 ``rv = '$1 \\xrightarrow[' + m[1] + ' \\to ' + m[2].replace('inf', '\\infty') + ']{} $2'`` 
 endsnippet
 
+context math(context)
 snippet `lim_([\\?a-zA-Z]+)_([\\?a-zA-Z]+) ` A
 ``rv = '\\lim_{' + m[1] + ' \\to ' + m[2].replace('inf', '\\infty') + '} '``
 endsnippet
@@ -157,6 +169,51 @@ endsnippet
 #-------------------------------------- 
 #			        Environment	      		  |
 #--------------------------------------
+
+context text(context)
+snippet `бю\s|юб\s` "Semicolon" A
+``rv = ';'``
+endsnippet
+
+snippet `tbl(\d+)(\d+)` "LaTeX table" A
+``
+rows = m[1]
+cols = m[2]
+
+res = `\\begin{table}[H]\n`
+res += `\t\\captionsetup{justification=justified}`
+res += `\t\\caption{\\label{tbl:${snip.tabstop(1)}}${snip.tabstop(2)}}\n`
+res += `\t\\begin{tabularx}{\\textwidth}{${"|X".repeat(cols)}|}\n`
+res += `\t\t\\hline\n`
+
+// Header row
+let n = 3
+res += `\t\t`
+for (let j = 0; j < cols; j++) {
+    res += snip.tabstop(n++, `col${j+1}`)
+    if (j + 1 < cols) {
+        res += " & "
+    }
+}
+res += ` \\\\\\\\ \\hline\n`
+
+// Data rows
+for (let i = 0; i < rows - 1; i++) {
+    res += `\t\t`
+    for (let j = 0; j < cols; j++) {
+        res += snip.tabstop(n++, `row${i+1}${j+1}`)
+        if (j + 1 < cols) {
+            res += " & "
+        }
+    }
+    res += ` \\\\\\\\ \\hline\n`
+}
+
+res += `\t\\end{tabularx}\n`
+res += `\\end{table}`
+rv = res
+``
+endsnippet
 
 # ;; -> \(  \) 
 snippet ;; " [HS] math inline" A

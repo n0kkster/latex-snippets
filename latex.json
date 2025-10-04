@@ -426,5 +426,18 @@
 			"$0",
 			"\\end{prf}"
 		]
+	},
+	"listing": {
+		"prefix": [
+			"list"
+		],
+		"body": [
+			"\\begin{center}",
+			"\t\\captionsetup{justification=centering, labelsep=endash, singlelinecheck=on}",
+			"\t\\begin{lstlisting}[label=$1, caption=$2]",
+			"$3",
+			"\t\\end{lstlisting}",
+			"\\end{center}"
+		]
 	}
 }

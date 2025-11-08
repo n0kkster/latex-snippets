@@ -168,10 +168,9 @@
 			"eq"
 		],
 		"body": [
-			"\\begin{equation}",
-			"$1",
-			"\\end{equation}",
-			"$0"
+			"\\begin{equation} \\label{eq:$1}",
+			"\t$0",
+			"\\end{equation}"
 		]
 	},
 	"begin/end void equation": {
@@ -179,10 +178,9 @@
 			"eqv"
 		],
 		"body": [
-			"\\begin{equation*}",
-			"$1",
-			"\\end{equation*}",
-			"$0"
+			"\\begin{equation*} \\label{eq:$1}",
+			"\t$0",
+			"\\end{equation*}"
 		]
 	},
 	"begin/end aligned": {
@@ -362,9 +360,9 @@
 			"dfn"
 		],
 		"body": [
-			"\\begin{dfn}",
+			"\\begin{definition}",
 			"$0",
-			"\\end{dfn}"
+			"\\end{definition}"
 		]
 	},
 	"begin/end definition*": {
@@ -372,9 +370,9 @@
 			"dfnv"
 		],
 		"body": [
-			"\\begin{dfn*}",
+			"\\begin{definition*}",
 			"$0",
-			"\\end{dfn*}"
+			"\\end{definition*}"
 		]
 	},
 	"begin/end proposition": {
@@ -434,7 +432,7 @@
 		"body": [
 			"\\begin{center}",
 			"\t\\captionsetup{justification=centering, labelsep=endash, singlelinecheck=on}",
-			"\t\\begin{lstlisting}[label=$1, caption=$2]",
+			"\t\\begin{lstlisting}[label=lst:$1, caption=$2]",
 			"$3",
 			"\t\\end{lstlisting}",
 			"\\end{center}"

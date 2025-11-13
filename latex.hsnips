@@ -63,7 +63,7 @@ rv = msg;
 endsnippet
 
 context math(context)
-snippet `(\\?\w+)(,\.|\.,)` "vector" A
+snippet `\b([a-zA-Z])vec\b` "vec" A
 ``rv = '\\vec{' + m[1] + '}'``
 endsnippet
 
@@ -73,18 +73,13 @@ snippet `\b([a-zA-Z])bar\b` "bar" A
 endsnippet
 
 context math(context)
-snippet `\b([a-zA-Z])-hat\b` "hat" A
+snippet `\b([a-zA-Z])hat\b` "hat" A
 ``rv = '\\hat{' + m[1] + '}'``
 endsnippet
 
 context math(context)
 snippet `\b([a-zA-Z])cal\b` "cal" A
 ``rv = '\\mathcal{' + m[1] + '}'``
-endsnippet
-
-context math(context)
-snippet `([A-Z])#` "bb" A
-``rv = '\\mathbb{' + m[1] + '}'``
 endsnippet
 
 snippet mk "inline math" A
@@ -120,8 +115,8 @@ snippet @@ "infinity" A
 endsnippet
 
 context math(context)
-snippet `([a-zA-Z0-9])td` "exponentiation" A
-``rv = m[1] + '^{$1}'``
+snippet `([a-zA-Z0-9\{\}])td` "exponentiation" A
+``rv = m[1] + '^{' + snip.tabstop(0) + '}'``
 endsnippet
 
 context math(context)
@@ -145,7 +140,7 @@ snippet `=<` "implied by" A
 endsnippet
 
 snippet `==` "equals" A
-``rv = '&= $1 \\\\\\'``
+&= $0 \\\\
 endsnippet
 
 snippet `<=` "leq" A
@@ -158,16 +153,11 @@ endsnippet
 
 context math(context)
 snippet `([\\?a-zA-Z]+)->([\\?a-zA-Z]+) ` A
-``rv = '$1 \\xrightarrow[' + m[1] + ' \\to ' + m[2].replace('inf', '\\infty') + ']{} $2'`` 
-endsnippet
-
-context math(context)
-snippet `lim_([\\?a-zA-Z]+)_([\\?a-zA-Z]+) ` A
-``rv = '\\lim_{' + m[1] + ' \\to ' + m[2].replace('inf', '\\infty') + '} '``
+``rv = snip.tabstop(1) + ' \\xrightarrow[' + m[1] + ' \\to ' + m[2].replace('inf', '\\infty') + ']{} ' + snip.tabstop(2)`` 
 endsnippet
 
 #-------------------------------------- 
-#			        Environment	      		  |
+#		       Environment	  		  |
 #--------------------------------------
 
 context text(context)
@@ -227,7 +217,7 @@ endsnippet
 
 # Mp34xb -> 3x4 pMatrix with all components equal to x
 # Mp -> \begin{pMatrix}
-# Mb -> \begin{pMatrix} etc.
+# Mb -> \begin{bMatrix} etc.
 # the last variable [bn] specifies output style. 
 context math(context)
 snippet `M([\ pbvBV])(\d)(\d)(.)([bn])` " [HS] Matrix" A
@@ -475,6 +465,7 @@ snippet `\s*?sq` " [HS] Square" A
 ^2
 endsnippet
 
+# xcb -> x^3
 context math(context)
 snippet `\s*?cb` " [HS] Cube" A
 ^3
@@ -531,7 +522,7 @@ endsnippet
 #				Dots				   |
 #--------------------------------------
 
-# x_{i+1},, -> x_{i+1}, \\cdots, x_{i+1}
+# x_{i+1},, -> x_{i+1}, \\ldots, x_{i+1}
 context math(context)
 snippet `(\B\\[A-Za-z]+|\b\d*[\\A-Za-z])(\_|\^)([0-9a-zA-Z\\\_\{\}\(\)\-\+\*]+),,` " [HS] repeat by ldots" wA
 `` rv = `${m[1]}${m[2]}${m[3]}, \\ldots, ${m[1]}${m[2]}${m[3]}` ``
@@ -610,20 +601,20 @@ endsnippet
 
 context math(context)
 snippet `\\int\s?\^` " [HS] Integral" wA
-\\int_{${1:-\\infty}}^{${2:\\infty}} 
+\\int_{${1:-\\infty}}^{${2:+\\infty}} 
 endsnippet
 
 #-------------------------------------- 
 #				  Misc				   |
 #--------------------------------------
 
-snippet `\b(?<!\\)(?<!\\mathrm\{)(tit|tbf)` " [HS] textit textbf" A
-`` trans = {
-	"tit": "\\textit",
-	"tbf": "\\textbf",
-}
-rv = `${trans[m[1]]}{${snip.tabstop(1)}} ${snip.tabstop(2)}` ``
-endsnippet
+# snippet `\b(?<!\\)(?<!\\mathrm\{)(tit|tbf)` " [HS] textit textbf" A
+# `` trans = {
+# 	"tit": "\\textit",
+# 	"tbf": "\\textbf",
+# }
+# rv = `${trans[m[1]]}{${snip.tabstop(1)}} ${snip.tabstop(2)}` ``
+# endsnippet
 
 context math(context)
 snippet `\b(?<!\\)dsum` " [HS] direct sum" wA

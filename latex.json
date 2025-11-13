@@ -57,22 +57,6 @@
 			"\\text{$0}"
 		]
 	},
-	"Table": {
-		"prefix": "tab",
-		"body": [
-			"\\begin{table}[H]",
-			"\t\\centering",
-			"\t\\begin{tabular}{${1:ccc}}",
-			"\t\t\\toprule",
-			"\t\ta & b & c \\\\\\ \\midrule",
-			"\t\t1 & 2 & 3 \\\\\\",
-			"\t\t\\bottomrule",
-			"\t\\end{tabular}",
-			"\t\\caption{${2:caption}\\label{tab:${3:sample}}}",
-			"\\end{table}",
-			"$0"
-		]
-	},
 	"pmatrix": {
 		"prefix": "pm",
 		"body": [
@@ -80,18 +64,6 @@
 			"$1",
 			"\\end{pmatrix}",
 			"$0"
-		]
-	},
-	"Integral": {
-		"prefix": "int",
-		"body": [
-			"\\int_{${1:0}}^{${2:\\infty}} $0"
-		]
-	},
-	"Sum Full": {
-		"prefix": "sumi",
-		"body": [
-			"\\sum_{${1:i}=${2:0}}^{${3:\\infty}} $0"
 		]
 	},
 	"undersetinline": {
@@ -122,12 +94,6 @@
 		"prefix": "avg",
 		"body": [
 			"\\langle $1 \\rangle$0"
-		]
-	},
-	"Sum": {
-		"prefix": "sum",
-		"body": [
-			"\\sum_{${1:i=0}}^{${2:\\infty}} $0"
 		]
 	},
 	"hbar": {
@@ -270,9 +236,9 @@
 			"thm"
 		],
 		"body": [
-			"\\begin{thm}",
+			"\\begin{theorem}",
 			"$0",
-			"\\end{thm}"
+			"\\end{theorem}"
 		]
 	},
 	"begin/end theorem* ": {
@@ -280,9 +246,9 @@
 			"thmv"
 		],
 		"body": [
-			"\\begin{thm*}",
+			"\\begin{theorem*}",
 			"$0",
-			"\\end{thm*}"
+			"\\end{theorem*}"
 		]
 	},
 	"begin/end corollary": {
@@ -290,9 +256,9 @@
 			"cor"
 		],
 		"body": [
-			"\\begin{cor}",
+			"\\begin{corollary}",
 			"$0",
-			"\\end{cor}"
+			"\\end{corollary}"
 		]
 	},
 	"begin/end corollary* ": {
@@ -300,9 +266,9 @@
 			"corv"
 		],
 		"body": [
-			"\\begin{cor*}",
+			"\\begin{corollary*}",
 			"$0",
-			"\\end{cor*}"
+			"\\end{corollary*}"
 		]
 	},
 	"begin/end example": {
@@ -310,9 +276,9 @@
 			"ex"
 		],
 		"body": [
-			"\\begin{ex}",
+			"\\begin{example}",
 			"$0",
-			"\\fin\\end{ex}"
+			"\\fin\\end{example}"
 		]
 	},
 	"begin/end example* ": {
@@ -320,19 +286,9 @@
 			"exv"
 		],
 		"body": [
-			"\\begin{ex*}",
+			"\\begin{example*}",
 			"$0",
-			"\\fin\\end{ex*}"
-		]
-	},
-	"begin/end exercise": {
-		"prefix": [
-			"exe"
-		],
-		"body": [
-			"\\begin{exe}",
-			"$0",
-			"\\end{exe}"
+			"\\fin\\end{example*}"
 		]
 	},
 	"begin/end remark": {
@@ -340,9 +296,9 @@
 			"rem"
 		],
 		"body": [
-			"\\begin{rem}",
+			"\\begin{remark}",
 			"$0",
-			"\\fin\\end{rem}"
+			"\\fin\\end{remark}"
 		]
 	},
 	"begin/end remark* ": {
@@ -350,9 +306,9 @@
 			"remv"
 		],
 		"body": [
-			"\\begin{rem*}",
+			"\\begin{remark*}",
 			"$0",
-			"\\fin\\end{rem*}"
+			"\\fin\\end{remark*}"
 		]
 	},
 	"begin/end definition": {
@@ -375,54 +331,14 @@
 			"\\end{definition*}"
 		]
 	},
-	"begin/end proposition": {
-		"prefix": [
-			"prp"
-		],
-		"body": [
-			"\\begin{prp}",
-			"$0",
-			"\\end{prp}"
-		]
-	},
-	"begin/end proposition*": {
-		"prefix": [
-			"prpv"
-		],
-		"body": [
-			"\\begin{prp*}",
-			"$0",
-			"\\end{prp*}"
-		]
-	},
-	"begin/end lemma": {
-		"prefix": [
-			"lem"
-		],
-		"body": [
-			"\\begin{lem}",
-			"$0",
-			"\\end{lem}"
-		]
-	},
-	"begin/end lem*": {
-		"prefix": [
-			"lemv"
-		],
-		"body": [
-			"\\begin{lem*}",
-			"$0",
-			"\\end{lem*}"
-		]
-	},
 	"begin/end prf": {
 		"prefix": [
 			"prf"
 		],
 		"body": [
-			"\\begin{prf}",
+			"\\begin{proof}",
 			"$0",
-			"\\end{prf}"
+			"\\end{proof}"
 		]
 	},
 	"listing": {
@@ -436,6 +352,16 @@
 			"$3",
 			"\t\\end{lstlisting}",
 			"\\end{center}"
+		]
+	},
+	"gostlisting": {
+		"prefix": [
+			"glist"
+		],
+		"body": [
+			"\\begin{listing}[$1]{lst:$2}{C++}",
+			"$3",
+			"\\end{listing}"
 		]
 	}
 }

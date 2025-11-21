@@ -30,6 +30,7 @@ function math(context) {
 		|| context.scopes.some(s => s.startsWith("meta.math.block.tex")))
         && !context.scopes.some(s => s.startsWith("punctuation.definition.string.begin.latex"))
         && !context.scopes.some(s => s.startsWith("comment"))
+        && !context.scopes.some(s => s.startsWith("meta.text.normal.tex"))
         && !context.scopes.some(s => s.startsWith("meta.definition.label.latex"));
     return result;
 }

@@ -167,7 +167,7 @@ snippet `бю\s|юб\s` "Semicolon" A
 ``rv = ';'``
 endsnippet
 
-snippet `tbl(\d+)(\d+)` "LaTeX table" A
+snippet `\btbl(\d+)(\d+)` "LaTeX table" A
 ``
 rows = m[1]
 cols = m[2]
@@ -203,6 +203,65 @@ for (let i = 0; i < rows - 1; i++) {
 
 res += `\t\\end{tabularx}\n`
 res += `\\end{table}`
+rv = res
+``
+endsnippet
+
+snippet `\bltbl(\d+)(\d+)` "LaTeX table" A
+``
+rows = m[1]
+cols = m[2]
+
+res = `\\begin{center}\n`
+res += `\t\\begin{tabularx}{\\textwidth}{${"|X".repeat(cols)}|}\n`
+res += `\t\t\\caption{\\label{tbl:${snip.tabstop(1)}}${snip.tabstop(2)}} \\\\\\\\ `
+res += `\\hline\n`
+
+// Header row
+let n = 3
+res += `\t\t`
+for (let j = 0; j < cols; j++) {
+    res += snip.tabstop(n++, `col${j+1}`)
+    if (j + 1 < cols) {
+        res += " & "
+    }
+}
+res += ` \\\\\\\\ `
+res += `\\hline\n`
+res += `\t\t\\endfirsthead\n\n`
+
+res += `\t\t\\multicolumn{${cols}}{r}{{\\tablename\\ \\thetable{} -- продолжение}}`
+res += ` \\\\\\\\ `
+res += `\\hline\n`
+res += `\t\t`
+for (let j = 0; j < cols; j++) {
+    res += snip.tabstop(n++, `col${j+1}`)
+    if (j + 1 < cols) {
+        res += " & "
+    }
+}
+
+res += ` \\\\\\\\ `
+res += `\\hline\n`
+res += `\t\t\\endhead\n\n`
+res += `\t\t\\hline\n`
+res += `\t\t\\endfoot\n`
+res += `\t\t\\endlastfoot\n\n`
+
+// Data rows
+for (let i = 0; i < rows; i++) {
+    res += `\t\t`
+    for (let j = 0; j < cols; j++) {
+        res += snip.tabstop(n++, `row${i+1}${j+1}`)
+        if (j + 1 < cols) {
+            res += " & "
+        }
+    }
+    res += ` \\\\\\\\ \\hline\n`
+}
+
+res += `\t\\end{tabularx}\n`
+res += `\\end{center}`
 rv = res
 ``
 endsnippet

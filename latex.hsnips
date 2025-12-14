@@ -230,7 +230,7 @@ res += ` \\\\\\\\ `
 res += `\\hline\n`
 res += `\t\t\\endfirsthead\n\n`
 
-res += `\t\t\\multicolumn{${cols}}{r}{{\\tablename\\ \\thetable{} -- продолжение}}`
+res += `\t\t\\multicolumn{${cols}}{l}{{Продолжение таблицы\\ \\thetable{}}}`
 res += ` \\\\\\\\ `
 res += `\\hline\n`
 res += `\t\t`
